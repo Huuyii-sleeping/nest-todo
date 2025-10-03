@@ -32,9 +32,9 @@ export class TodoController {
   }
 
   // 删除任务
-  @Post('remove')
-  remove(@Body('id') id: string) {
-    return this.todoService.remove(+id);
+  @Post('removeTask')
+  remove(@Body() id: number) { 
+    return this.todoService.remove(id);
   }
 }
  

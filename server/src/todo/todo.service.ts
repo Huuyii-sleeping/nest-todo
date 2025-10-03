@@ -35,7 +35,6 @@ export class TodoService {
   }
 
   async remove(id: number) {
-    await this.findOne(id)
     await this.todoRepository.delete(id)
   }
 }

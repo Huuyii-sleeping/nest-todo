@@ -26,6 +26,7 @@ const login = async () => {
             username: form.name,
             password: form.password,
         }
+        console.log(params)
         const { status } = await userLoginAsync(params)
         if (status) {
             ElMessage({
