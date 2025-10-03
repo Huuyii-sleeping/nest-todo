@@ -29,9 +29,6 @@ importers:
       '@nestjs/platform-express':
         specifier: ^11.0.1
         version: 11.1.6(@nestjs/common@11.1.6(class-validator@0.14.2)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.6)
-      '@nestjs/typeorm':
-        specifier: ^11.0.0
-        version: 11.0.0(@nestjs/common@11.1.6(class-validator@0.14.2)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.6)(reflect-metadata@0.2.2)(rxjs@7.8.2)(typeorm@0.3.27(mysql2@3.15.1)(reflect-metadata@0.2.2)(ts-node@10.9.2(@types/node@22.18.8)(typescript@5.9.3)))
       '@types/bcryptjs':
         specifier: ^3.0.0
         version: 3.0.0
@@ -44,9 +41,9 @@ importers:
       class-validator:
         specifier: ^0.14.2
         version: 0.14.2
-      mysql2:
-        specifier: ^3.15.1
-        version: 3.15.1
+      dotenv:
+        specifier: ^17.2.3
+        version: 17.2.3
       passport:
         specifier: ^0.7.0
         version: 0.7.0
@@ -59,9 +56,6 @@ importers:
       rxjs:
         specifier: ^7.8.1
         version: 7.8.2
-      typeorm:
-        specifier: ^0.3.27
-        version: 0.3.27(mysql2@3.15.1)(reflect-metadata@0.2.2)(ts-node@10.9.2(@types/node@22.18.8)(typescript@5.9.3))
     devDependencies:
       '@eslint/eslintrc':
         specifier: ^3.2.0
@@ -78,6 +72,9 @@ importers:
       '@nestjs/testing':
         specifier: ^11.0.1
         version: 11.1.6(@nestjs/common@11.1.6(class-validator@0.14.2)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.6)(@nestjs/platform-express@11.1.6)
+      '@nestjs/typeorm':
+        specifier: ^11.0.0
+        version: 11.0.0(@nestjs/common@11.1.6(class-validator@0.14.2)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.6)(reflect-metadata@0.2.2)(rxjs@7.8.2)(typeorm@0.3.27(mysql2@3.15.1)(reflect-metadata@0.2.2)(ts-node@10.9.2(@types/node@22.18.8)(typescript@5.9.3)))
       '@types/express':
         specifier: ^5.0.0
         version: 5.0.3
@@ -105,6 +102,9 @@ importers:
       jest:
         specifier: ^30.0.0
         version: 30.2.0(@types/node@22.18.8)(ts-node@10.9.2(@types/node@22.18.8)(typescript@5.9.3))
+      mysql2:
+        specifier: ^3.15.1
+        version: 3.15.1
       prettier:
         specifier: ^3.4.2
         version: 3.6.2
@@ -126,6 +126,9 @@ importers:
       tsconfig-paths:
         specifier: ^4.2.0
         version: 4.2.0
+      typeorm:
+        specifier: ^0.3.27
+        version: 0.3.27(mysql2@3.15.1)(reflect-metadata@0.2.2)(ts-node@10.9.2(@types/node@22.18.8)(typescript@5.9.3))
       typescript:
         specifier: ^5.7.3
         version: 5.9.3
@@ -1602,6 +1605,10 @@ packages:
 
   dotenv@16.6.1:
     resolution: {integrity: sha512-uBq4egWHTcTt33a72vpSG0z3HnPuIl6NqYcTrKEg2azoEyl2hpW0zqlxysq2pK9HlDIHyHyakeYaYnSAwd8bow==}
+    engines: {node: '>=12'}
+
+  dotenv@17.2.3:
+    resolution: {integrity: sha512-JVUnt+DUIzu87TABbhPmNfVdBDt18BLOWjMUFJMSi/Qqg7NTYtabbvSNJGOJ7afbRuv9D/lngizHtP7QyLQ+9w==}
     engines: {node: '>=12'}
 
   dunder-proto@1.0.1:
@@ -5023,6 +5030,8 @@ snapshots:
   dotenv@16.4.7: {}
 
   dotenv@16.6.1: {}
+
+  dotenv@17.2.3: {}
 
   dunder-proto@1.0.1:
     dependencies:
