@@ -7,6 +7,10 @@
         <el-form-item label="内容">
             <el-input v-model="form.content"></el-input>
         </el-form-item>
+        <el-form-item label="封面">
+            <el-input v-model="image" type="file" id="fileInput" accept="image/*"></el-input>
+        </el-form-item>
+        <el-button @click="upload">提交图片</el-button>
     </el-form>
     <el-button type="primary" @click="logout">退出登录</el-button>
     <el-button type="primary" @click="addTask">添加代办</el-button>
@@ -28,15 +32,36 @@ import { onMounted, reactive, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { addtodoAsync, deletetodoAsync, getAlltodoAsync } from '../api/task';
 import { ElMessage } from 'element-plus';
+import { imagePostAsync } from '../api/uploads';
 
 const router = useRouter()
 const form = reactive({
     title: '',
     content: '',
 })
+const image = ref('')
 const logout = () => {
     console.log('logout')
+    localStorage.removeItem('token')
     router.push('/login')
+}
+const upload = async () => {
+    const fileInput = document.getElementById('fileInput') as any
+    const file = fileInput.files[0]
+    if (!file) {
+        return alert('请选择文件')
+    }
+    const formData = new FormData()
+    formData.append('file', file)
+    try {
+        const result = await imagePostAsync(formData)
+        const { data } = result
+        let { url } = data
+        url = '/server' + url
+        document.body.innerHTML += `<img src="${url}" width="200" />`;
+    } catch (error) {
+        console.warn('上传失败:',error)
+    }
 }
 const addTask = async () => {
     console.log('addTask')

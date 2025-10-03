@@ -6,9 +6,16 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { UserModule } from './user/user.module';
 import { JwtModule } from '@nestjs/jwt';
+import { UploadModule } from './upload/upload.module';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
 
 @Module({
   imports: [
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', 'uploads'),
+      serveRoot: '/uploads/',
+    }),
     ConfigModule.forRoot({
       isGlobal: true,
     }),
@@ -39,6 +46,8 @@ import { JwtModule } from '@nestjs/jwt';
     }),
     TodoModule,
     UserModule,
+    UploadModule,
+    UploadModule,
   ],
   controllers: [AppController],
   providers: [AppService],

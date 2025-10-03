@@ -18,7 +18,7 @@ export class TodoController {
 
   // 获取所有任务
   @UseGuards(AuthGuard, PermissionGuard)
-  @Permission(10)
+  @Permission(20)
   @Get('getAllTask')
   findAll() {
     return this.todoService.findAll();
@@ -36,11 +36,10 @@ export class TodoController {
     return this.todoService.update(updateTodoDto);
   }
 
-  // 删除任务
-  @UseGuards(PermissionGuard)
+  // 删除任务 
+  @UseGuards(AuthGuard,PermissionGuard)
   @Permission(20)
   @Post('removeTask')
-  @Permission(20)
   remove(@Body() id: number) {
     return this.todoService.remove(id);
   }
