@@ -8,6 +8,10 @@ const axiosInstance = axios.create({
 
 axiosInstance.interceptors.request.use(
     (config) => {
+        const token = localStorage.getItem('token')
+        if(token) {
+            config.headers.Authorization = `Bearer ${token}`
+        }
         return config
     },
     (error) => {
@@ -17,16 +21,14 @@ axiosInstance.interceptors.request.use(
 
 axiosInstance.interceptors.response.use(
     (response) => {
-        if (response.data.code === 401) {
+        if (response.data.code === 401) { // 未授权操作
+            localStorage.removeItem('token')
             router.push('/login')
-        }
-        if (response.data.code === 200) {
-
         }
         return response
     },
     (error) => {
-        return error
+        return Promise.reject(error)
     }
 )
 

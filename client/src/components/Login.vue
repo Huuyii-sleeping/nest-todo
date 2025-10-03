@@ -26,13 +26,13 @@ const login = async () => {
             username: form.name,
             password: form.password,
         }
-        console.log(params)
-        const { status } = await userLoginAsync(params)
+        const { status, data } = await userLoginAsync(params)
         if (status) {
             ElMessage({
                 type: 'success',
                 message: "登录成功"
             })
+            localStorage.setItem('token', data.access_token)
             router.push('/')
         } else {
             ElMessage({

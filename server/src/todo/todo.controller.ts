@@ -1,7 +1,10 @@
-import { Controller, Get, Post, Body, Param } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, UseGuards } from '@nestjs/common';
 import { TodoService } from './todo.service';
 import { CreateTodoDto } from './dto/create-todo.dto';
 import { UpdateTodoDto } from './dto/update-todo.dto';
+import { Permission } from 'src/decorators/permission.decorators';
+import { AuthGuard } from 'src/guards/auth.guard';
+import { PermissionGuard } from 'src/guards/permission.guard';
 
 @Controller('todo')
 export class TodoController {
@@ -14,6 +17,8 @@ export class TodoController {
   }
 
   // 获取所有任务
+  @UseGuards(AuthGuard, PermissionGuard)
+  @Permission(10)
   @Get('getAllTask')
   findAll() {
     return this.todoService.findAll();
@@ -32,9 +37,11 @@ export class TodoController {
   }
 
   // 删除任务
+  @UseGuards(PermissionGuard)
+  @Permission(20)
   @Post('removeTask')
-  remove(@Body() id: number) { 
+  @Permission(20)
+  remove(@Body() id: number) {
     return this.todoService.remove(id);
   }
 }
- 

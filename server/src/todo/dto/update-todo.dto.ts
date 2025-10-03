@@ -9,4 +9,4 @@ export class UpdateTodoDto extends PartialType(CreateTodoDto) {
     title?: string | undefined;
     @IsString()
     content?: string | undefined;
-} 
+}

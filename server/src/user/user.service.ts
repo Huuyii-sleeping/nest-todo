@@ -1,5 +1,4 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
-import { CreateUserDto } from './dto/create-user.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './entities/user.entity';
 import { Repository } from 'typeorm';
@@ -53,5 +52,9 @@ export class UserService {
       access_token: this.jwtService.sign(payload),
       user: { id: user.id, username: user.username },
     };
+  }
+
+  async findOne(id: number) {
+    return this.userRepository.findOneBy({ id });
   }
 }
