@@ -9,6 +9,6 @@ export class Todo {
     title: string
 
     @Column({ type: 'varchar', length: 200 })
-    content: string
+    content: string 
 }
  
