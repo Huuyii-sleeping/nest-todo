@@ -11,9 +11,12 @@ import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 import { ReportLoggerModule } from './report-logger/report-logger.module';
 import { ChatModule } from './chat/chat.module';
+import { HttpModule } from '@nestjs/axios'
+import { ProxyController } from './proxy/proxy.controller';
 
 @Module({
   imports: [
+    // HttpModule,
     ChatModule,
     ReportLoggerModule.forFeature('AppModule'),
     ServeStaticModule.forRoot({
@@ -58,7 +61,7 @@ import { ChatModule } from './chat/chat.module';
     UploadModule,
     ChatModule,
   ],
-  controllers: [AppController],
+  controllers: [AppController, ProxyController],
   providers: [AppService],
 })
 export class AppModule {}
