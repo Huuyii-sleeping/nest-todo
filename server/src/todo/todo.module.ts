@@ -4,10 +4,15 @@ import { TodoController } from './todo.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Todo } from './entities/todo.entity';
 import { UserModule } from 'src/user/user.module';
+import { ReportLoggerModule } from 'src/report-logger/report-logger.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Todo]), UserModule],
+  imports: [
+    ReportLoggerModule.forFeature('todo'),
+    TypeOrmModule.forFeature([Todo]), 
+    UserModule
+  ],
   controllers: [TodoController],
   providers: [TodoService],
 })
-export class TodoModule { }     
+export class TodoModule {}

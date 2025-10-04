@@ -9,9 +9,11 @@ import { JwtModule } from '@nestjs/jwt';
 import { UploadModule } from './upload/upload.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
+import { ReportLoggerModule } from './report-logger/report-logger.module';
 
 @Module({
   imports: [
+    ReportLoggerModule.forFeature('AppModule'),
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '..', 'uploads'),
       serveRoot: '/uploads/',
