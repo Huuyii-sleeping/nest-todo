@@ -10,9 +10,11 @@ import { UploadModule } from './upload/upload.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 import { ReportLoggerModule } from './report-logger/report-logger.module';
+import { ChatModule } from './chat/chat.module';
 
 @Module({
   imports: [
+    ChatModule,
     ReportLoggerModule.forFeature('AppModule'),
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '..', 'uploads'),
@@ -54,6 +56,7 @@ import { ReportLoggerModule } from './report-logger/report-logger.module';
     UserModule,
     UploadModule,
     UploadModule,
+    ChatModule,
   ],
   controllers: [AppController],
   providers: [AppService],
