@@ -17,6 +17,10 @@ import { ReportLoggerModule } from './report-logger/report-logger.module';
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '..', 'uploads'),
       serveRoot: '/uploads/',
+    },
+    {
+      rootPath: join(__dirname, '..', 'public'),
+      serveRoot: '/public'
     }),
     ConfigModule.forRoot({
       isGlobal: true,
