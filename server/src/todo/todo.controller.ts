@@ -2,10 +2,10 @@ import { Controller, Get, Post, Body, Param, UseGuards } from '@nestjs/common';
 import { TodoService } from './todo.service';
 import { CreateTodoDto } from './dto/create-todo.dto';
 import { UpdateTodoDto } from './dto/update-todo.dto';
-import { Permission } from 'src/decorators/permission.decorators';
-import { AuthGuard } from 'src/guards/auth.guard';
-import { PermissionGuard } from 'src/guards/permission.guard';
-import { ReportLogger } from 'src/report-logger/report.logger';
+import { Permission } from '../decorators/permission.decorators';
+import { AuthGuard } from '../guards/auth.guard';
+import { PermissionGuard } from '../guards/permission.guard';
+import { ReportLogger } from '../report-logger/report.logger';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 
 @ApiTags('todo')
