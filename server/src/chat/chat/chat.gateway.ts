@@ -7,9 +7,8 @@ import {
   WebSocketGateway,
   WebSocketServer,
 } from '@nestjs/websockets';
-import { Socket } from 'socket.io';
-import { Server } from 'http';
-
+import { Socket, Server } from 'socket.io';
+// import { Server } from 'http';
 
 @Injectable() // 必须开启才能注入调度器
 @WebSocketGateway({ // 标记网关接口
