@@ -1,4 +1,4 @@
-import { Logger } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import {
   OnGatewayConnection,
   OnGatewayDisconnect,
@@ -10,6 +10,8 @@ import {
 import { Socket } from 'socket.io';
 import { Server } from 'http';
 
+
+@Injectable() // 必须开启才能注入调度器
 @WebSocketGateway({ // 标记网关接口
   namespace: 'chat', // 所有的连接必须携带/chat前缀 隔离网关
   cors: {
@@ -23,6 +25,14 @@ export class ChatGateway
   // 底层的服务器对象进行注入 赋值给this.server
   private logger: Logger = new Logger('ChatGateway');
   users = 0; // 统计在线人数
+
+  boardcastMessage(message: string){
+    const payload = {
+      time: new Date().toLocaleString('zh-CN'),
+      data: `[系统]${message}`
+    }
+    this.server.emit('msgToClient', payload)
+  }
 
   @SubscribeMessage('msgToServer') // 监听传递的消息 前端调用 socket.emit('msgToServer', 'hello')调用这个方法
   handleMessage(client: Socket, payload: string): void {

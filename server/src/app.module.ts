@@ -11,22 +11,28 @@ import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 import { ReportLoggerModule } from './report-logger/report-logger.module';
 import { ChatModule } from './chat/chat.module';
-import { HttpModule } from '@nestjs/axios'
-import { ProxyController } from './proxy/proxy.controller';
+import { ScheduleModule } from '@nestjs/schedule';
+import { ChatGateway } from './chat/chat/chat.gateway';
+import { ChatSchedulerService } from './chat/chat-scheduler.service';
+// import { HttpModule } from '@nestjs/axios'
+// import { ProxyController } from './proxy/proxy.controller';
 
 @Module({
   imports: [
     // HttpModule,
+    ScheduleModule.forRoot(),
     ChatModule,
     ReportLoggerModule.forFeature('AppModule'),
-    ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '..', 'uploads'),
-      serveRoot: '/uploads/',
-    },
-    {
-      rootPath: join(__dirname, '..', 'public'),
-      serveRoot: '/public'
-    }),
+    ServeStaticModule.forRoot(
+      {
+        rootPath: join(__dirname, '..', 'uploads'),
+        serveRoot: '/uploads/',
+      },
+      {
+        rootPath: join(__dirname, '..', 'public'),
+        serveRoot: '/public',
+      },
+    ),
     ConfigModule.forRoot({
       isGlobal: true,
     }),
@@ -61,7 +67,7 @@ import { ProxyController } from './proxy/proxy.controller';
     UploadModule,
     ChatModule,
   ],
-  controllers: [AppController, ProxyController],
-  providers: [AppService],
+  controllers: [AppController],
+  providers: [AppService, ChatGateway, ChatSchedulerService],
 })
 export class AppModule {}
